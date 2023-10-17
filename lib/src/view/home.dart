@@ -28,7 +28,7 @@ class HomePage extends ConsumerWidget {
                         ),
                       ),
                       subtitle:Text(
-                        'Email: ${e.email}',
+                        'Age: ${e.age}',
               
                         style: TextStyle(
                 fontSize: 20,

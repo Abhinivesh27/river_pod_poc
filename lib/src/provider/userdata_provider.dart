@@ -4,6 +4,6 @@ import 'package:river_pod_poc/src/model/model.dart';
 
 final userDataProvider = FutureProvider<List<UserModel>>(
   (ref) async {
-    return ref.read(apiProvider).getUsers();
+    return ref.read(apiProvider).getUsersFromFirebase();
   } 
 );

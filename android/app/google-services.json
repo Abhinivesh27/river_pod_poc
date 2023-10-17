@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "602779199611",
+    "project_id": "river-pod-poc",
+    "storage_bucket": "river-pod-poc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:602779199611:android:41276e2304057371a15ade",
+        "android_client_info": {
+          "package_name": "com.example.river_pod_poc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASCVDSJx-jtK_4HiM98mfU-dVdGxy_kC8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
