@@ -11,55 +11,49 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final data = ref.watch(userDataProvider);
     return Scaffold(
-      body: Center(
-        child: data.when(
-          data: (data) => Column(
-            children: data.map((e) => 
-            SizedBox(
-              width: 500,
+      body: SingleChildScrollView(
+        child: Center(
+          child: data.when(
+            data: (data) => Column(
+              children: data.map((e) => 
+              SizedBox(
+                width: 500,
+                height: 100,
+                child: ListTile(
+                  title: Text(
+                        'Name: ${e.name}',
+              
+                        style: TextStyle(
+                fontSize: 20,
+                        ),
+                      ),
+                      subtitle:Text(
+                        'Email: ${e.email}',
+              
+                        style: TextStyle(
+                fontSize: 20,
+                        ),
+                      ),
+                ),
+              ),
+              ).toList()
+            ),
+      
+            loading: () => const SizedBox(
               height: 100,
-              child: ListTile(
-                leading: CircleAvatar(
-                  radius: 20,
-                  
-                  foregroundImage: NetworkImage(
-                  e.avatar ?? '',
-                
-                ),
-                ),
-                title: Text(
-                      'Name: ${e.firstName}',
-            
-                      style: TextStyle(
-              fontSize: 20,
-                      ),
-                    ),
-                    subtitle:Text(
-                      'Name: ${e.email}',
-            
-                      style: TextStyle(
-              fontSize: 20,
-                      ),
-                    ),
+              width: 100,
+              child: CircularProgressIndicator(),
+            ),
+      
+            error: (a, b) => SizedBox(
+              height: 100,
+              width: 100,
+              child: CircularProgressIndicator(
+                color: Colors.red,
               ),
             ),
-            ).toList()
-          ),
-
-          loading: () => const SizedBox(
-            height: 100,
-            width: 100,
-            child: CircularProgressIndicator(),
-          ),
-
-          error: (a, b) => SizedBox(
-            height: 100,
-            width: 100,
-            child: CircularProgressIndicator(
-              color: Colors.red,
-            ),
-          ),
-        )
+          )
+        ),
       ),
     );
   }
