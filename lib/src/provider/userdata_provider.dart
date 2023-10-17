@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:river_pod_poc/src/controller/service.dart';
+import 'package:river_pod_poc/src/controller/write_service.dart';
 import 'package:river_pod_poc/src/model/model.dart';
 
 final userDataProvider = FutureProvider<List<UserModel>>(
@@ -7,3 +8,4 @@ final userDataProvider = FutureProvider<List<UserModel>>(
     return ref.read(apiProvider).getUsersFromFirebase();
   } 
 );
+

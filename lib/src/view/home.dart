@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:river_pod_poc/src/controller/write_service.dart';
+import 'package:river_pod_poc/src/model/model.dart';
 import 'package:river_pod_poc/src/provider/userdata_provider.dart';
 
 
 
 class HomePage extends ConsumerWidget {
-  const HomePage({super.key});
+   HomePage({super.key});
+
+  TextEditingController userNameController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
 
   @override 
   Widget build(BuildContext context, WidgetRef ref) {
@@ -53,6 +58,39 @@ class HomePage extends ConsumerWidget {
               ),
             ),
           )
+        ),
+      ),
+      floatingActionButton: SizedBox(
+        width: 500,
+        height: 100,
+        child: Row(
+          children: [
+            //name
+           SizedBox(
+            width: 100,
+            height: 100,
+            child: TextField(
+              controller: userNameController,
+            ),
+           ) ,
+           //age
+           SizedBox(
+            width: 100,
+            height: 100,
+            child: TextField(
+              controller: ageController,
+              keyboardType: TextInputType.number,
+            ),
+           ) ,
+           FloatingActionButton(
+            onPressed: () {
+              ref.read(writeProvider).writeUserToFirebase(
+                UserModel()..name=userNameController.text..age=int.parse(ageController.text)
+              );
+            },
+            child: Icon(Icons.add),
+           ),
+          ],
         ),
       ),
     );
