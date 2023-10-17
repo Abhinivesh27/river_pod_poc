@@ -18,17 +18,22 @@ class ApiService {
   //   return result.map((e) => UserModel.fromJson(e)).toList();
   // }
 
-  Future<List<UserModel>> getUsersFromFirebase() async {
+  Stream<List<UserModel>> getUsersFromFirebase()  {
   final String collectionName = "users";
   final FirebaseFirestore app = FirebaseFirestore.instance;
   final CollectionReference _collectionReference = app.collection(collectionName);
 
-  var users = await _collectionReference.get();
+  var users =  _collectionReference.snapshots();
 
-  return users.docs.map((e) => UserModel()..name=e['name']..age=e['age']).toList();
+  var stream = users.map((sanpshot) {
+    var result = sanpshot.docs.map((e) => UserModel()..name=e['name']..age=e['age']);
+
+    return result.toList();
+  });
+  return stream;
   }
 
-  
+
 
 }
 
