@@ -10,7 +10,7 @@ final CollectionReference _collectionReference = app.collection('users');
 class ApiService {
 Stream<List<UserModel>> getAllUsers() {
   return _collectionReference.snapshots().map((snapshot) {
-    var result = snapshot.docs.map((e) => UserModel()..name=e['name']..age=e['age']).toList();
+    var result = snapshot.docs.map((e) => UserModel()..id=e.id..name=e['name']..age=e['age']).toList();
     return result;
   } );
 }
@@ -31,12 +31,12 @@ void deleteUser(String username) async {
 
 void updateUser(UserModel user) async {
   log("Update Called");
-  var data = await _collectionReference.where('name',isEqualTo: user.name).get();
+  var data = await _collectionReference.doc(user.id).get();
 Map<String, dynamic> updatedData = {
     "name": user.name,
     "age": user.age,
   };
-  data.docs[0].reference.update(updatedData);
+  data.reference.update(updatedData);
 }
 }
 

@@ -17,6 +17,14 @@ class HomePage extends ConsumerWidget {
     var dataProvider = ref.watch(userDataProvider);
     
     return Scaffold(
+      drawer: Drawer(
+        child:ListView(
+          children: [
+             UserAccountsDrawerHeader(accountName: Text("Abhi"), accountEmail:  Text("abhi@atmega.in")),
+          ],
+        ),
+      ),
+      appBar: AppBar(),
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
