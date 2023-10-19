@@ -6,6 +6,7 @@ import 'package:river_pod_poc/src/provider/data_provider.dart';
 
 TextEditingController username = TextEditingController();
   TextEditingController agecontroller = TextEditingController();
+  TextEditingController currentId = TextEditingController();
  bool isEdit = false; 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -39,6 +40,7 @@ class HomePage extends ConsumerWidget {
               width: 500,
               child: ListTile(
                 onTap: () {
+                  currentId.text = data[index].id;
                   username.text =  data[index].name;
                   agecontroller.text = data[index].age.toString();
                   isEdit = true;
@@ -95,7 +97,7 @@ class HomePage extends ConsumerWidget {
             ElevatedButton(
               
               onPressed: () {
-               isEdit ? ref.read(apiProvider).updateUser(UserModel()..name=username.text..age=int.parse(agecontroller.text)) : ref.read(apiProvider).writeUser(UserModel()..name=username.text..age=int.parse(agecontroller.text));
+               isEdit ? ref.read(apiProvider).updateUser(UserModel()..id=currentId.text..name=username.text..age=int.parse(agecontroller.text)) : ref.read(apiProvider).writeUser(UserModel()..name=username.text..age=int.parse(agecontroller.text));
                 username.clear();
                 agecontroller.clear();
                 isEdit = false;
